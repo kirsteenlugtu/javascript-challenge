@@ -16,31 +16,25 @@ function runFilter(){
 
     d3.event.preventDefault();
 
-    // ------ Filter out data ---------------
-
+    // create array filterObject that contains all filters chosen 
     let filterObject = {};
 
     // filter by date
     let inputElement = d3.select("#datetime");
     let dateIn = inputElement.property("value");
-
     if (dateIn !== "") {
         filterObject.datetime = dateIn;
     }
-    // console.log(dateIn);
-    // let filteredData = ufoData.filter(sighting => sighting.datetime === dateIn);
-
+ 
     // filter by city
     let cityInputElement = d3.select("#city");
     let cityIn = cityInputElement.property("value");
     console.log(cityIn);
-
     if (cityIn !== "") { 
        filterObject.city = cityIn;
-       
     }
     
-    // // filter by state
+    // filter by state
     let stateInputElement = d3.select("#state");
     let stateIn = stateInputElement.property("value");
     if (stateIn !== "") {
@@ -67,7 +61,7 @@ function runFilter(){
 
     let filteredData = ufoData;
 
-
+    // filter data
     Object.entries(filterObject).forEach(([key, value]) => {
         filteredData = filteredData.filter(o => o[key] === value);
 
